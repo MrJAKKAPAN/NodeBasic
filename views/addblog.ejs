@@ -15,6 +15,9 @@
         <%- include layout %>
         <div class="container"><br><br>
             <h2 align="center">เขียนบทความ</h2>
+            <!-- มาจาก  req.flash("error", "บันทึกบทความเรียบร้อย"); ใน blog.js -->
+            <%- messages() %>  
+
 
             <!-- ตรวจสอบ การกรอกข้อมมูล -> blog.js  errors -->
             <% if(locals.errors) { %>

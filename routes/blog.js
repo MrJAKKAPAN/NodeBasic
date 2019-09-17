@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
 router.get('/add', function(req, res, next) {
   res.render("addblog");
 });
+
  /*แจ้ง errors -> รับจากไฟล์ addblog*/
 router.post('/add', [ 
   check("name","กรุณาป้อนชื่อบทความ").not().isEmpty(), 
@@ -31,9 +32,11 @@ router.post('/add', [
 ], function(req, res, next) {
   const result = validationResult(req);
   var errors=result.errors;
-  if (!result.isEmpty()) {
+    if (!result.isEmpty()) {
     res.render('addblog',{errors:errors});
+  
   }else{
+
     //insert to db ให้เข้าถึงชื่อ blogs ใน database
     var ct=db.get('blogs'); 
     //เพิ่มข้อมูลลงใน database
@@ -46,8 +49,13 @@ router.post('/add', [
         if(err){
           res.send(err);
         }else{
+          //แจ้งเตือน
+          req.flash("error", "บันทึกบทความเรียบร้อย");
+          
+          //กลับไปหน้าแรก
           res.location('/blog/add'); //หน้าแรก
           res.redirect('/blog/adds'); 
+
         }
     })
   }
