@@ -15,12 +15,18 @@
         <%- include layout %>
         <div class="container"><br><br>
             <h2 align="center">เขียนบทความ</h2>
-            <form class="" action="/blog/add" method="POST">
-                <div class="form-group">
-                    <label for="">ชื่อบทความ</label>
-                    <input type="text" name="name" value="" class="form-control">
-                </div>
 
+            <!-- ตรวจสอบ การกรอกข้อมมูล -> blog.js  errors -->
+            <% if(locals.errors) { %>
+            <ul class="alert alert-danger">
+                <% Object.values(errors).forEach(function(error){ %>
+                    <li><%= error.msg %></li>
+                <% }) %>
+            </ul>
+            <% } %>
+            
+
+            <form class="" action="/blog/add" method="POST">
                 <div class="form-group">
                     <label for="">ชื่อบทความ</label>
                     <input type="text" name="name" value="" class="form-control">
@@ -40,7 +46,7 @@
             </form>
         </div>
 
-        <!-- Ckeditor -->
+        <!-- การใช้ Ckeditor  -->
         <script>
             CKEDITOR.replace( 'description' );
     </script>
