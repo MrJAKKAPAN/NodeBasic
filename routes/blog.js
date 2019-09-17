@@ -50,11 +50,10 @@ router.post('/add', [
           res.send(err);
         }else{
           //แจ้งเตือน
-          req.flash("error", "บันทึกบทความเรียบร้อย");
-          
+          req.flash("error", "บันทึกข้อมูลเรียบร้อยแล้ว");
           //กลับไปหน้าแรก
           res.location('/blog/add'); //หน้าแรก
-          res.redirect('/blog/adds'); 
+          res.redirect('/blog/add'); 
 
         }
     })

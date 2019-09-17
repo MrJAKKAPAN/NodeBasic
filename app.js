@@ -28,7 +28,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
-/*connect-flash*/
+//connect-flash
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
